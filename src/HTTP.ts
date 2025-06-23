@@ -27,20 +27,55 @@ export class HTTP {
     }
 
     protected request(method: "get" | "post" | "put" | "del", path: string, options: Partial<httpie.Options> = {}): Promise<httpie.Response> {
-        return httpie[method](this.client['getHttpEndpoint'](path), this.getOptions(options)).catch((e: any) => {
-            if (e.aborted) {
-                throw new AbortError("Request aborted");
-            }
+        if (!!wx) {
+            // 微信小程序环境
+            const fullOptions = this.getOptions(options);
+            return new Promise<httpie.Response>((resolve, reject) => {
+                wx.request({
+                    url: this.client['getHttpEndpoint'](path),
+                    // @ts-ignore
+                    method: method.toUpperCase(),
+                    header: fullOptions.headers,
+                    timeout: fullOptions.timeout,
+                    data: fullOptions.body,
+                    success: ({ data, statusCode, header }) => {
+                        resolve({
+                            data,
+                            statusCode,
+                            statusMessage: '',
+                            headers: header
+                        });
+                    },
+                    fail : ({ errMsg }) => {
+                        reject(new Error(errMsg));
+                    }
+                });
+            }).catch((e: any) => {
+                const status = e.statusCode || -1; //  || -1
+                const message = e.data?.error || e.statusMessage || e.message; //  || "offline"
 
-            const status = e.statusCode; //  || -1
-            const message = e.data?.error || e.statusMessage || e.message; //  || "offline"
+                if (!status && !message) {
+                    throw e;
+                }
 
-            if (!status && !message) {
-                throw e;
-            }
+                throw new ServerError(status, message);
+            });
+        } else {
+            return httpie[method](this.client['getHttpEndpoint'](path), this.getOptions(options)).catch((e: any) => {
+                if (e.aborted) {
+                    throw new AbortError("Request aborted");
+                }
 
-            throw new ServerError(status, message);
-        });
+                const status = e.statusCode; //  || -1
+                const message = e.data?.error || e.statusMessage || e.message; //  || "offline"
+
+                if (!status && !message) {
+                    throw e;
+                }
+
+                throw new ServerError(status, message);
+            });
+        }
     }
 
     protected getOptions(options: Partial<httpie.Options>) {

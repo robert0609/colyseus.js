@@ -1,5 +1,5 @@
 import { ServerError } from './errors/Errors';
-import { Room } from './Room';
+import { Room, splitURL } from './Room';
 import { SchemaConstructor } from './serializer/SchemaSerializer';
 import { HTTP } from "./HTTP";
 import { Auth } from './Auth';
@@ -34,7 +34,7 @@ export interface EndpointSettings {
 
 export interface ClientOptions {
     headers?: { [id: string]: string };
-    urlBuilder?: (url: URL) => string;
+    urlBuilder?: (url: URL | ReturnType<typeof splitURL>) => string;
 }
 
 export class Client {
@@ -44,7 +44,7 @@ export class Client {
     public auth: Auth;
 
     protected settings: EndpointSettings;
-    protected urlBuilder: (url: URL) => string;
+    protected urlBuilder: (url: URL | ReturnType<typeof splitURL>) => string;
 
     constructor(
         settings: string | EndpointSettings = DEFAULT_ENDPOINT,
@@ -56,8 +56,8 @@ export class Client {
             // endpoint by url
             //
             const url = (settings.startsWith("/"))
-                ? new URL(settings, DEFAULT_ENDPOINT)
-                : new URL(settings);
+                ? splitURL(settings, DEFAULT_ENDPOINT)
+                : splitURL(settings);
 
             const secure = (url.protocol === "https:" || url.protocol === "wss:");
             const port = Number(url.port || (secure ? 443 : 80));
@@ -67,7 +67,8 @@ export class Client {
                 pathname: url.pathname,
                 port,
                 secure,
-                searchParams: url.searchParams.toString() || undefined,
+                // @ts-ignore
+                searchParams: url.searchParams?.toString() || undefined,
             };
 
         } else {
@@ -261,7 +262,7 @@ export class Client {
 
         const endpointURL = `${endpoint}/${room.processId}/${room.roomId}?${searchParams}`;
         return (this.urlBuilder)
-            ? this.urlBuilder(new URL(endpointURL))
+            ? this.urlBuilder(splitURL(endpointURL))
             : endpointURL;
     }
 
@@ -275,7 +276,7 @@ export class Client {
         }
 
         return (this.urlBuilder)
-            ? this.urlBuilder(new URL(endpointURL))
+            ? this.urlBuilder(splitURL(endpointURL))
             : endpointURL;
     }
 
