@@ -11,6 +11,7 @@
   },
   "include": [
     "../src/**/*.ts",
-    "../typings/cocos-creator.d.ts"
+    "../typings/cocos-creator.d.ts",
+    "../wx-typings/index.d.ts"
   ]
 }

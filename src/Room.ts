@@ -90,6 +90,7 @@ export class Room<State= any> {
                 room.destroy();
             }
         };
+        // TODO: wx这里onError的参数不一样
         connection.events.onerror = function (e: CloseEvent) {
             console.warn?.(`Room, onError (${e.code}): ${e.reason}`);
             room.onError.invoke(e.code, e.reason);
