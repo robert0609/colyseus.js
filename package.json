@@ -8,6 +8,7 @@
     "test": "vitest --dir test --reporter verbose",
     "build": "rollup -c rollup.config.mjs",
     "build-dist-dts": "dts-bundle-generator --config dts-generator.json",
+    "build-lib": "tsc && npm run build && npm run build-dist-dts",
     "build-ci": "tsc && npm run build && npm run build-dist-dts && npm run build-zip-dist",
     "build-zip-dist": "zip --junk-paths colyseus-sdk dist/colyseus*",
     "build-all": "tsc && npm run build && npm run build-dist-dts && npm run copy-cocos-creator-files && npm run copy-construct3-files",
