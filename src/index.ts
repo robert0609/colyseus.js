@@ -1,3 +1,5 @@
+/// <reference path="../wx-typings/index.d.ts" />
+
 import './legacy';
 
 export { Client, JoinOptions, MatchMakeError, type EndpointSettings, type ClientOptions } from './Client';
