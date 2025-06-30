@@ -67,7 +67,6 @@ export class Client {
                 pathname: url.pathname,
                 port,
                 secure,
-                // @ts-ignore
                 searchParams: url.searchParams?.toString() || undefined,
             };
 

@@ -52,6 +52,7 @@ export function splitURL(url: string, base?: string) {
         port: matches[3] || "",
         pathname: matches[4] || "/",
         search: matches[5] ? "?" + matches[5] : "",
+        searchParams: matches[5] ? matches[5] : "",
         hash: matches[6] ? "#" + matches[6] : "",
         href: url,
         origin: (matches[1] ? matches[1] + "://" : "//") + (matches[2] || "") + (matches[3] ? ":" + matches[3] : "")
