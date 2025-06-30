@@ -10,6 +10,7 @@ export { getStateCallbacks } from './serializer/SchemaSerializer.mjs';
 import { NoneSerializer } from './serializer/NoneSerializer.mjs';
 import { registerSerializer } from './serializer/Serializer.mjs';
 
+/// <reference path="../wx-typings/index.d.ts" />
 registerSerializer('schema', SchemaSerializer);
 registerSerializer('none', NoneSerializer);
 

@@ -11,6 +11,7 @@ var SchemaSerializer = require('./serializer/SchemaSerializer.js');
 var NoneSerializer = require('./serializer/NoneSerializer.js');
 var Serializer = require('./serializer/Serializer.js');
 
+/// <reference path="../wx-typings/index.d.ts" />
 Serializer.registerSerializer('schema', SchemaSerializer.SchemaSerializer);
 Serializer.registerSerializer('none', NoneSerializer.NoneSerializer);
 

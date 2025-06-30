@@ -13774,6 +13774,7 @@
         handshake(bytes) { }
     }
 
+    /// <reference path="../wx-typings/index.d.ts" />
     registerSerializer('schema', SchemaSerializer);
     registerSerializer('none', NoneSerializer);
 
