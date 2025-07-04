@@ -1,5 +1,5 @@
 // THIS VERSION USES "XMLHttpRequest" INSTEAD OF "fetch" FOR COMPATIBILITY WITH COCOS CREATOR
-// colyseus.js@0.17.3 (@colyseus/schema 3.0.42)
+// colyseus.js@0.17.4 (@colyseus/schema 3.0.42)
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('events'), require('https'), require('http'), require('net'), require('tls'), require('crypto'), require('stream'), require('url'), require('zlib'), require('buffer')) :
     typeof define === 'function' && define.amd ? define('colyseus.js', ['exports', 'events', 'https', 'http', 'net', 'tls', 'crypto', 'stream', 'url', 'zlib', 'buffer'], factory) :
@@ -13788,7 +13788,7 @@
                 : "";
         }
     }
-    Client.VERSION = "0.17.3";
+    Client.VERSION = "0.17.4";
 
     class NoneSerializer {
         setState(rawState) { }
