@@ -1,7 +1,7 @@
-import NodeWebSocket from "ws";
+import type NodeWebSocket from "ws";
 import { ITransport, ITransportEventMap } from "./ITransport";
 
-const WebSocket = globalThis.WebSocket || NodeWebSocket;
+const WebSocket = globalThis.WebSocket;
 
 export class WebSocketTransport implements ITransport {
     ws: WebSocket | NodeWebSocket | WechatMiniprogram.SocketTask;
@@ -57,14 +57,8 @@ export class WebSocketTransport implements ITransport {
                 this.events.onerror({ code: -10000, reason: errMsg });
             });
         } else {
-            try {
-                // Node or Bun environments (supports custom headers)
-                this.ws = new WebSocket(url, { headers, protocols: this.protocols });
-
-            } catch (e) {
-                // browser environment (custom headers not supported)
-                this.ws = new WebSocket(url, this.protocols);
-            }
+            // browser environment (custom headers not supported)
+            this.ws = new WebSocket(url, this.protocols);
 
             this.ws.binaryType = 'arraybuffer';
             this.ws.onopen = this.events.onopen;
