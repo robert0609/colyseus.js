@@ -1,4 +1,4 @@
-import NodeWebSocket from "ws";
+import type NodeWebSocket from "ws";
 import { ITransport, ITransportEventMap } from "./ITransport";
 export declare class WebSocketTransport implements ITransport {
     events: ITransportEventMap;
