@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import './legacy.mjs';
 export { Client, MatchMakeError } from './Client.mjs';
 export { ErrorCode, Protocol } from './Protocol.mjs';

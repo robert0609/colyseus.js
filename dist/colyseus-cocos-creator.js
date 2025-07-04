@@ -1,5 +1,5 @@
 // THIS VERSION USES "XMLHttpRequest" INSTEAD OF "fetch" FOR COMPATIBILITY WITH COCOS CREATOR
-// colyseus.js@0.17.1 (@colyseus/schema 3.0.42)
+// colyseus.js@0.17.2 (@colyseus/schema 3.0.42)
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('events'), require('https'), require('http'), require('net'), require('tls'), require('crypto'), require('stream'), require('url'), require('zlib'), require('buffer')) :
     typeof define === 'function' && define.amd ? define('colyseus.js', ['exports', 'events', 'https', 'http', 'net', 'tls', 'crypto', 'stream', 'url', 'zlib', 'buffer'], factory) :
@@ -10412,10 +10412,27 @@
             this.events = events;
         }
         send(data) {
+            // console.log('&&&', 'send to server', data);
             if (!!wx) {
-                this.ws.send({ data });
+                if (data instanceof Uint8Array) {
+                    /**
+                     * 微信小程序的websocket api不支持直接发送Uint8Array，会报：sendSocketMessage:fail:unknown data
+                     * 因此这里要转换成ArrayBuffer发送。而且要注意通过byteOffset和byteLength截取
+                     */
+                    // console.log('&&&', 'send in wx on Uint8Array');
+                    this.ws.send({ data: data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset), fail: (err) => console.error('&&& send error', err) });
+                }
+                else if (Array.isArray(data)) {
+                    // console.log('&&&', 'send in wx on Array');
+                    this.ws.send({ data: (new Uint8Array(data)).buffer, fail: (err) => console.error('&&& send error', err) });
+                }
+                else {
+                    // console.log('&&&', 'send in wx on Raw');
+                    this.ws.send({ data, fail: (err) => console.error('&&& send error', err) });
+                }
             }
             else {
+                // console.log('&&&', 'send in web');
                 this.ws.send(data);
             }
         }
@@ -10427,7 +10444,9 @@
          * @param headers custom headers to send with the connection (only supported in Node.js. Web Browsers do not allow setting custom headers)
          */
         connect(url, headers) {
+            // console.log('&&&', 'start connect');
             if (!!wx) {
+                // console.log('&&&', 'connect in wx');
                 // 若是微信小程序环境
                 this.ws = wx.connectSocket({
                     url,
@@ -10437,6 +10456,7 @@
                 this.ws.onMessage(this.events.onmessage);
                 this.ws.onClose(this.events.onclose);
                 this.ws.onError(({ errMsg }) => {
+                    // TODO: error code defination
                     this.events.onerror({ code: -1e4, reason: errMsg });
                 });
             }
@@ -13015,6 +13035,7 @@
             }
         }
         onMessageCallback(event) {
+            // console.log('&&& onMessageCallback', event);
             const buffer = new Uint8Array(event.data);
             const it = { offset: 1 };
             const code = buffer[0];
@@ -13767,7 +13788,7 @@
                 : "";
         }
     }
-    Client.VERSION = "0.17.1";
+    Client.VERSION = "0.17.2";
 
     class NoneSerializer {
         setState(rawState) { }

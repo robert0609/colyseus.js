@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { ServerError } from './errors/Errors.mjs';
 import { splitURL, Room } from './Room.mjs';
 import { HTTP } from './HTTP.mjs';
@@ -20,7 +20,7 @@ const DEFAULT_ENDPOINT = (typeof (window) !== "undefined" && typeof (window?.loc
     ? `${window.location.protocol.replace("http", "ws")}//${window.location.hostname}${(window.location.port && `:${window.location.port}`)}`
     : "ws://127.0.0.1:2567";
 class Client {
-    static VERSION = "0.17.1";
+    static VERSION = "0.17.2";
     http;
     auth;
     settings;

@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 const serializers = {};
 function registerSerializer(id, serializer) {
     serializers[id] = serializer;

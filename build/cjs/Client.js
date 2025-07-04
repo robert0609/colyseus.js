@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 'use strict';
 
 var tslib = require('tslib');
@@ -224,7 +224,7 @@ class Client {
             : "";
     }
 }
-Client.VERSION = "0.17.1";
+Client.VERSION = "0.17.2";
 
 exports.Client = Client;
 exports.MatchMakeError = MatchMakeError;

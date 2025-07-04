@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { encode, decode } from '@colyseus/schema';
 
 class H3TransportTransport {

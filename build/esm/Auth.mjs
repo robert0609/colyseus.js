@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { getItem, removeItem, setItem } from './Storage.mjs';
 import { createNanoEvents } from './core/nanoevents.mjs';
 

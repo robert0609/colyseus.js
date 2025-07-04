@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 'use strict';
 
 var Errors = require('./errors/Errors.js');

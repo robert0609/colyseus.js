@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { Reflection, Decoder, getDecoderStateCallbacks } from '@colyseus/schema';
 
 function getStateCallbacks(room) {

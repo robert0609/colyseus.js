@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 class NoneSerializer {
     setState(rawState) { }
     getState() { return null; }

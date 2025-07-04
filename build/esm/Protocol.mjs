@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 // Use codes between 0~127 for lesser throughput (1 byte)
 var Protocol;
 (function (Protocol) {

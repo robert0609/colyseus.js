@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 'use strict';
 
 var Connection = require('./Connection.js');
@@ -195,6 +195,7 @@ class Room {
         }
     }
     onMessageCallback(event) {
+        // console.log('&&& onMessageCallback', event);
         const buffer = new Uint8Array(event.data);
         const it = { offset: 1 };
         const code = buffer[0];

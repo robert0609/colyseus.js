@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { ServerError, AbortError } from './errors/Errors.mjs';
 import * as httpie from '@colyseus/httpie';
 

@@ -1,4 +1,4 @@
-// colyseus.js@0.17.1
+// colyseus.js@0.17.2
 import { H3TransportTransport } from './transport/H3Transport.mjs';
 import { WebSocketTransport } from './transport/WebSocketTransport.mjs';
 
