@@ -1,6 +1,6 @@
 {
     "name": "colyseus.js",
-    "version": "0.17.3",
+    "version": "0.17.4",
     "description": "Colyseus Multiplayer SDK for JavaScript/TypeScript",
     "author": "Endel Dreyer",
     "license": "MIT",
@@ -57,13 +57,6 @@
     },
     "engines": {
         "node": ">= 12.x"
-    },
-    "peerDependencies": {
-        "@colyseus/msgpackr": "^1.11.2",
-        "@colyseus/schema": "^3.0.0",
-        "@colyseus/httpie": "^2.0.0",
-        "tslib": "^2.1.0",
-        "ws": "^8.13.0"
     },
     "dependencies": {
         "@colyseus/msgpackr": "^1.11.2",
