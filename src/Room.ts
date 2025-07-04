@@ -260,6 +260,7 @@ export class Room<State= any> {
     }
 
     protected onMessageCallback(event: MessageEvent) {
+        // console.log('&&& onMessageCallback', event);
         const buffer = new Uint8Array(event.data);
 
         const it: Iterator = { offset: 1 };
