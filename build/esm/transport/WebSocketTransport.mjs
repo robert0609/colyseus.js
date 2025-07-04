@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 import NodeWebSocket from 'ws';
 
 const WebSocket = globalThis.WebSocket || NodeWebSocket;

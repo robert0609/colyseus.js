@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 /// <reference path="../typings/cocos-creator.d.ts" />
 /**
  * We do not assign 'storage' to window.localStorage immediatelly for React

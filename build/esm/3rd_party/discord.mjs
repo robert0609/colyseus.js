@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 /**
  * Discord Embedded App SDK
  * https://github.com/colyseus/colyseus/issues/707

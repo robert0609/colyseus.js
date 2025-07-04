@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 var CloseCode;
 (function (CloseCode) {
     CloseCode[CloseCode["CONSENTED"] = 4000] = "CONSENTED";

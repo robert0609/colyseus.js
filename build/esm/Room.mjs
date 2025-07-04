@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 import { Connection } from './Connection.mjs';
 import { Protocol } from './Protocol.mjs';
 import { getSerializer } from './serializer/Serializer.mjs';

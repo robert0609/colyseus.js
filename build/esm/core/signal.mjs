@@ -1,4 +1,4 @@
-// colyseus.js@0.17.2
+// colyseus.js@0.17.3
 class EventEmitter {
     handlers = [];
     register(cb, once = false) {
